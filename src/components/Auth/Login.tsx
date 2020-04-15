@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import TextField from '@material-ui/core/TextField';
 import './index.css';
 
@@ -7,13 +7,6 @@ const Login: React.FC = () => {
     const [password, setPassword] = useState('');
     const [user, setUser] = useState(null);
     const [mainError, setMainError] = useState('');
-
-    useEffect(() => {
-        const user = JSON.parse(localStorage.getItem('current-user') || '');
-        if (Object.keys(user).length > 0) {
-            // Go to user Dashboard
-        }
-    }, []);
 
     const checkLogin = (event: any) => {
         event.preventDefault();
