@@ -1,51 +1,61 @@
-import React, { useState } from 'react';
-import TextField from '@material-ui/core/TextField';
-import './index.css';
+import React, { useState } from "react";
+import { TextField, Button, Grid } from "@material-ui/core";
+import { LoginStyles } from "../../styles/Login"
+interface User {
+    Username: string;
+    Password: string;
+}
 
 const Login: React.FC = () => {
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
-    const [user, setUser] = useState(null);
-    const [mainError, setMainError] = useState('');
+    const [user, setUser] = useState<User>({ Username: "", Password: "" });
+    const [error, setError] = useState<boolean>(false);
+    const classes = LoginStyles()
 
-    const checkLogin = (event: any) => {
+    const checkLogin = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        if (username.length === 0 || password.length === 0) {
-            setMainError('All the fields are required!');
+        const { Username, Password } = user;
+        if (Username.length === 0 || Password.length === 0) {
+            setError(true);
             return;
-        } else if (username.length > 0 && password.length > 0) {
-            setMainError('');
-            const users = JSON.parse(localStorage.getItem('users') || '');
-            const user = users.find((x: any) => ((x.username === username || x.email === username) && x.password === password));
-            if (user) {
-                setUser(user);
-                localStorage.setItem('current-user', JSON.stringify(user));
-                setUsername('');
-                setPassword('');
-            } else {
-                setMainError('Incorrect Username or Password!')
-            }
+        } else {
+            const users: User[] = JSON.parse(localStorage.getItem("users") || "");
+            const user = users.find(
+                (x: User) => x.Username === Username && x.Password === Password
+            );
+            if (user) localStorage.setItem("current-user", JSON.stringify(user));
         }
-    }
+    };
 
     return (
-        <div>
-            {mainError.length > 0 && <span className="error">{mainError}</span>}
-            <form onSubmit={e => checkLogin(e)}>
-                <div>
-                    <TextField id="username" label="Username/Email" defaultValue=""
-                        onChange={e => setUsername(e.target.value)} />
-                </div>
-                <div>
-                    <TextField id="password" label="Password" type="password" defaultValue=""
-                        onChange={e => setPassword(e.target.value)} />
-                </div>
-                <div>
-                    <input type="submit" value="Login" />
-                </div>
-            </form>
-        </div>
-    )
-}
+        <form onSubmit={checkLogin} className={classes.Flex}>
+            <Grid className={classes.FlexItems}></Grid>
+            <Grid className={`${classes.FlexItems} ${classes.Flex}`}>
+                <Grid className={classes.AlignCenter}>
+                <TextField
+                    value={user.Username}
+                    label="Username/Email"
+                    onChange={(e) => setUser({ ...user, Username: e.target.value })}
+                    error={error && user.Username.length < 1}
+                    helperText={
+                        error && user.Username.length < 1 ? "Username is required" : null
+                    }
+                />
+                <TextField
+                    value={user.Password}
+                    label="Password"
+                    onChange={(e) => setUser({ ...user, Password: e.target.value })}
+                    error={error && user.Password.length < 1}
+                    helperText={
+                        error && user.Password.length < 1 ? "Password is required" : null
+                    }
+                />
+                <Button type="submit" variant="contained">
+                    Log In
+        </Button>
+                </Grid>
+            </Grid>
+        </form>
+    );
+};
 
 export default Login;
