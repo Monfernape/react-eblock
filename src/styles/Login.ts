@@ -3,18 +3,14 @@ import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 export const LoginStyles = makeStyles((theme: Theme) =>
     createStyles({
         Flex: {
-            display: "flex",
+            display: "flex"
+        },
+        FullHeight: {
             height: "100vh"
         },
-        FlexItems: {
-            width: "50%"
-        },
-        AlignCenter: {
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            alignItems: "center",
-            width: "100%"
+        FullWidth: {
+            width: "calc(100% - 50px)",
+            margin: "10px 0px"
         }
     })
 );
