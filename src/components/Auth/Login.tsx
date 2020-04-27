@@ -27,31 +27,33 @@ const Login: React.FC = () => {
     };
 
     return (
-        <form onSubmit={checkLogin} className={classes.Flex}>
-            <Grid className={classes.FlexItems}></Grid>
-            <Grid className={`${classes.FlexItems} ${classes.Flex}`}>
-                <Grid className={classes.AlignCenter}>
-                <TextField
-                    value={user.Username}
-                    label="Username/Email"
-                    onChange={(e) => setUser({ ...user, Username: e.target.value })}
-                    error={error && user.Username.length < 1}
-                    helperText={
-                        error && user.Username.length < 1 ? "Username is required" : null
-                    }
-                />
-                <TextField
-                    value={user.Password}
-                    label="Password"
-                    onChange={(e) => setUser({ ...user, Password: e.target.value })}
-                    error={error && user.Password.length < 1}
-                    helperText={
-                        error && user.Password.length < 1 ? "Password is required" : null
-                    }
-                />
-                <Button type="submit" variant="contained">
-                    Log In
-        </Button>
+        <form onSubmit={checkLogin}>
+            <Grid container className={classes.FullHeight}>
+                <Grid item sm={6} xs={12}></Grid>
+                <Grid item sm={6} xs={12} direction={"column"} justify={"center"} alignItems={"center"} className={classes.Flex}>
+                        <TextField
+                            value={user.Username}
+                            label="Username/Email"
+                            onChange={(e) => setUser({ ...user, Username: e.target.value })}
+                            error={error && user.Username.length < 1}
+                            helperText={
+                                error && user.Username.length < 1 ? "Username is required" : null
+                            }
+                            className={classes.FullWidth}
+                        />
+                        <TextField
+                            value={user.Password}
+                            label="Password"
+                            onChange={(e) => setUser({ ...user, Password: e.target.value })}
+                            error={error && user.Password.length < 1}
+                            helperText={
+                                error && user.Password.length < 1 ? "Password is required" : null
+                            }
+                            className={classes.FullWidth}
+                        />
+                        <Button type="submit" variant="contained" className={classes.FullWidth}>
+                            Log In
+                    </Button>
                 </Grid>
             </Grid>
         </form>
