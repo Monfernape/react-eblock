@@ -1,6 +1,8 @@
-import React from 'react'
+import React from 'react';
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import CreateOrder from './CreateOrder/CreateOrder';
+
+import Login from './components/Auth/Login';
 
 //TODO: IMPLEMENTING AUTH
 const Routing: React.FC = () => {
@@ -8,19 +10,10 @@ const Routing: React.FC = () => {
         <Router>
             <Switch>
                 <Route exact path="/"
-                    component={() =>
-                        <div>
-                            <CreateOrder />
-                        </div>
-                        // <PrivateRoute
-                        //     yes={() => (
-                        //         <div>Default Route</div>
-                        //     )}
-                        //     no={() => (
-                        //         <Redirect to="/login" />
-                        //     )}
-                        // />
-                    }
+                    component={Login}
+                />
+                <Route exact path="/create-order"
+                    component={CreateOrder}
                 />
                 <Route exact path="/two"
                     component={() =>
