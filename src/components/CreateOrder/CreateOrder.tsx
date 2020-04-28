@@ -1,21 +1,15 @@
 import React, { useState } from 'react';
-import Checkbox from '@material-ui/core/Checkbox';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Button from '@material-ui/core/Button';
-import FormControl from '@material-ui/core/FormControl';
-import InputLabel from '@material-ui/core/InputLabel';
-import Input from '@material-ui/core/Input';
-import Select from '@material-ui/core/Select';
-import MenuItem from '@material-ui/core/MenuItem';
-import CreateOrderModel from '../Models/CreateOrderModel';
-import { MaintenanceTypeData } from '../Config/Constants';
-import { setOrder } from '../services/CreateOrderService';
+import {Checkbox, FormControlLabel, Button, FormControl, InputLabel, Input, Select, MenuItem} from "@material-ui/core"
+import CreateOrderModel from '../../models/CreateOrderModel';
+import { MaintenanceTypeData } from '../../config/Constants';
+import { setOrder } from '../../services/CreateOrderService';
 const uuid = require('react-uuid');
 
 const CreateOrder = () => {
     const [model, setModel] = useState<CreateOrderModel>(new CreateOrderModel());
-    const [maintenanceTypeData, setMaintenanceTypeData] = useState(MaintenanceTypeData);
+    const [maintenanceTypeData] = useState(MaintenanceTypeData);
     const [maintenanceTypeItemId, setMaintenanceTypeItemId] = useState(MaintenanceTypeData.find(x => x.id === model.selectedMaintenanceTypeId)?.id);
+    
     const handleChange = (event: any) => {
         setMaintenanceTypeItemId(event.target.value);
     }
