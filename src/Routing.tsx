@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
-import CreateOrder from './CreateOrder/CreateOrder';
+import CreateOrder from './components/CreateOrder/CreateOrder';
 
 import Login from './components/Auth/Login';
 

@@ -4,7 +4,7 @@ export interface MaintenanceType {
 }
 
 export class CreateOrderModel {
-
+  
   id: string = "";
   userName: string = "";
   carName: string = "";

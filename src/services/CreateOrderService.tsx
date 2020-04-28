@@ -1,4 +1,4 @@
-import CreateOrderService from '../Models/CreateOrderModel';
+import CreateOrderService from '../models/CreateOrderModel';
 
     export const setOrder = (data: CreateOrderService[]) => {
         let getStoredOrders = {};
