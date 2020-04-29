@@ -1,6 +1,6 @@
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 
-export const LoginStyles = makeStyles((theme: Theme) =>
+export const AuthStyles = makeStyles((theme: Theme) =>
     createStyles({
         Flex: {
             display: "flex"

@@ -1,16 +1,12 @@
 import React, { useState } from "react";
 import { TextField, Button, Grid } from "@material-ui/core";
-import { LoginStyles } from "../../styles/Login"
-
-interface User {
-    Username: string;
-    Password: string;
-}
+import { AuthStyles } from "../../styles/Login"
+import { UserLogin } from "../../models/User"
 
 const Login: React.FC = () => {
-    const [user, setUser] = useState<User>({ Username: "", Password: "" });
+    const [user, setUser] = useState<UserLogin>({ Username: "", Password: "" });
     const [error, setError] = useState<boolean>(false);
-    const classes = LoginStyles()
+    const classes = AuthStyles()
 
     const checkLogin = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -19,9 +15,9 @@ const Login: React.FC = () => {
             setError(true);
             return;
         } else {
-            const users: User[] = JSON.parse(localStorage.getItem("users") || "");
+            const users: UserLogin[] = JSON.parse(localStorage.getItem("users") || "");
             const user = users.find(
-                (x: User) => x.Username === Username && x.Password === Password
+                (x: UserLogin) => x.Username === Username && x.Password === Password
             );
             if (user) localStorage.setItem("current-user", JSON.stringify(user));
         }
