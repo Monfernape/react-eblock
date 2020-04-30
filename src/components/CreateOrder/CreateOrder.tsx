@@ -1,20 +1,14 @@
 import React, { useState } from 'react';
 import { Checkbox, FormControlLabel, Button, FormControl, InputLabel, Input, Select, MenuItem, TextField } from "@material-ui/core"
-import { Car, generateId } from '../../models/CreateOrderModel';
-import { MaintenanceTypeData } from '../../config/Constants';
+import { Car, generateId, MaintenanceType } from '../../models/Car';
+import { MaintenanceTypes } from '../../config/Constants';
 import { setOrder } from '../../services/CreateOrderService';
 
 const CreateOrder = () => {
     const [car, setCar] = useState<Car>(new Car());
-    const [maintenanceTypeData] = useState(MaintenanceTypeData);
-    const [maintenanceTypeItemId, setMaintenanceTypeItemId] = useState(MaintenanceTypeData.find(x => x.id === car.selectedMaintenanceTypeId)?.id);
-
-    const handleChange = (event: any) => {
-        setMaintenanceTypeItemId(event.target.value);
-    }
 
     const handleSubmit = () => {
-        setCar({ ...car, id: generateId() })
+        setCar({ ...car, Id: generateId() })
         console.log('car:', car)
         setOrder([car])
     }
@@ -25,42 +19,37 @@ const CreateOrder = () => {
 
     return (
         <div>
-            <div >
+            <div>
                 <FormControl>
-                    <InputLabel htmlFor="component-helper">Car Name</InputLabel>
+                    <InputLabel>Car Name</InputLabel>
                     <Input
                         id="carNameId"
-                        value={car.carName}
-                        onChange={(e) => setCar({ ...car, carName: e.target.value })}
-                        aria-describedby="component-helper-text"
+                        value={car.Name}
+                        onChange={(e) => setCar({ ...car, Name: e.target.value })}
                     />
                 </FormControl>
             </div>
 
             <div>
                 <FormControl>
-                    <InputLabel htmlFor="component-helper">Car Model</InputLabel>
+                    <InputLabel>Car Model</InputLabel>
                     <Input
                         id="carModelId"
-                        value={car.carModel}
-                        onChange={(e) => setCar({ ...car, carModel: e.target.value })}
-                        aria-describedby="component-helper-text"
+                        value={car.Model}
+                        onChange={(e) => setCar({ ...car, Model: e.target.value })}
                     />
                 </FormControl>
             </div>
 
             <div>
                 <FormControl>
-                    <InputLabel id="demo-simple-select-label">Maintenance Type</InputLabel>
+                    <InputLabel>Maintenance Type</InputLabel>
                     <Select
-                        labelId="demo-simple-select-label"
-                        id="demo-simple-select"
-                        value={maintenanceTypeItemId}
-                        onChange={(event) => handleChange(event)}
+                        value={car.MaintenanceType}
+                        onChange={e => setCar({...car, MaintenanceType: e.target.value as string})}
                     >
-                        {/* { Generating dynamic MenuItems} */}
-                        {maintenanceTypeData.map((item, index) => (
-                            <MenuItem value={item.id}>{item.option}</MenuItem>
+                        {MaintenanceTypes.map((type: MaintenanceType, index) => (
+                            <MenuItem key={index} value={type.id}>{type.option}</MenuItem>
                         ))}
                     </Select>
                 </FormControl>
@@ -68,31 +57,27 @@ const CreateOrder = () => {
 
             <div>
                 <FormControl>
-                    <InputLabel htmlFor="component-helper">Car Color</InputLabel>
+                    <InputLabel>Car Color</InputLabel>
                     <Input
-                        id="carColorId"
                         type="color"
-                        value={car.carColor}
-                        aria-describedby="component-helper-text"
-                        style={{ width: 70 }}
-                        onChange={(e) => setCar({ ...car, carColor: e.target.value })}
+                        value={car.Color}
+                        onChange={(e) => setCar({ ...car, Color: e.target.value })}
                     />
                 </FormControl>
             </div>
 
-            <div>
+            {/* <div>
                 <TextField
-                    id="datetime-local"
-                    label="Next appointment"
+                    label="Expected Return Date"
                     type="date"
-                    defaultValue={car.dtExpectedReturnDate}
-                    onChange={(e) => setCar({ ...car, dtExpectedReturnDate: e.target.value })}
+                    value={new Date(car.ExpectedReturnDate)}
+                    onChange={(e) => setCar({ ...car, ExpectedReturnDate: e.target.value })}
                 />
-            </div>
+            </div> */}
 
             <div>
                 <FormControlLabel
-                    value={car.isInspection}
+                    value={car.Inspection}
                     control={<Checkbox color="primary" />}
                     label="Would you like to have complete inspection?"
                     labelPlacement="end"
@@ -102,7 +87,7 @@ const CreateOrder = () => {
             <div>
                 <Button
                     variant="contained"
-                    onClick={() => handleCancel()}
+                    onClick={handleCancel}
                     className="right-align"
                     style={{ marginTop: 8, marginRight: 120 }} >
                     Cancel
@@ -112,7 +97,7 @@ const CreateOrder = () => {
             <div>
                 <Button
                     variant="contained"
-                    onClick={() => handleSubmit()}
+                    onClick={handleSubmit}
                     className="right-align"
                     style={{ marginTop: 8, marginRight: 120 }} >
                     Submit
