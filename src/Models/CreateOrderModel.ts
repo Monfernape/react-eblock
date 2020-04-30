@@ -1,18 +1,23 @@
+const uuid = require('react-uuid');
+
 export interface MaintenanceType {
   id: number;
   option: string;
 }
 
-export class CreateOrderModel {
+export const generateId = () => {
+  return uuid();
+}
+
+export class Car {
   
   id: string = "";
-  userName: string = "";
+  userId: string = "Usman";
   carName: string = "";
   carModel: string = "";
   isInspection: boolean = false;
   selectedMaintenanceTypeId: string = "1"; 
-  dtExpectedReturnDate = "";
+  dtExpectedReturnDate = "2017-05-24";
   carColor: string = "";
 }
 
-export default CreateOrderModel;

@@ -1,28 +1,22 @@
 import React, { useState } from 'react';
-import {Checkbox, FormControlLabel, Button, FormControl, InputLabel, Input, Select, MenuItem} from "@material-ui/core"
-import CreateOrderModel from '../../models/CreateOrderModel';
+import { Checkbox, FormControlLabel, Button, FormControl, InputLabel, Input, Select, MenuItem, TextField } from "@material-ui/core"
+import { Car, generateId } from '../../models/CreateOrderModel';
 import { MaintenanceTypeData } from '../../config/Constants';
 import { setOrder } from '../../services/CreateOrderService';
-const uuid = require('react-uuid');
 
 const CreateOrder = () => {
-    const [model, setModel] = useState<CreateOrderModel>(new CreateOrderModel());
+    const [car, setCar] = useState<Car>(new Car());
     const [maintenanceTypeData] = useState(MaintenanceTypeData);
-    const [maintenanceTypeItemId, setMaintenanceTypeItemId] = useState(MaintenanceTypeData.find(x => x.id === model.selectedMaintenanceTypeId)?.id);
-    
+    const [maintenanceTypeItemId, setMaintenanceTypeItemId] = useState(MaintenanceTypeData.find(x => x.id === car.selectedMaintenanceTypeId)?.id);
+
     const handleChange = (event: any) => {
         setMaintenanceTypeItemId(event.target.value);
     }
 
     const handleSubmit = () => {
-        console.log('Submit button clicked.');
-        let obj = {
-            id: uuid(), userName: "usman", carName: model.carName, carModel: model.carModel,
-            selectedMaintenanceTypeId: MaintenanceTypeData.find(x => x.id === maintenanceTypeItemId)?.id || "",
-            dtExpectedReturnDate: model.dtExpectedReturnDate, carColor: model.carColor, isInspection: model.isInspection
-        };
-        console.log('obj:', obj)
-        setOrder([obj]);
+        setCar({ ...car, id: generateId() })
+        console.log('car:', car)
+        setOrder([car])
     }
 
     const handleCancel = () => {
@@ -36,8 +30,8 @@ const CreateOrder = () => {
                     <InputLabel htmlFor="component-helper">Car Name</InputLabel>
                     <Input
                         id="carNameId"
-                        value={model.carName}
-                        onChange={(e) => setModel({ ...model, carName: e.target.value })}
+                        value={car.carName}
+                        onChange={(e) => setCar({ ...car, carName: e.target.value })}
                         aria-describedby="component-helper-text"
                     />
                 </FormControl>
@@ -48,8 +42,8 @@ const CreateOrder = () => {
                     <InputLabel htmlFor="component-helper">Car Model</InputLabel>
                     <Input
                         id="carModelId"
-                        value={model.carModel}
-                        onChange={(e) => setModel({ ...model, carModel: e.target.value })}
+                        value={car.carModel}
+                        onChange={(e) => setCar({ ...car, carModel: e.target.value })}
                         aria-describedby="component-helper-text"
                     />
                 </FormControl>
@@ -78,20 +72,33 @@ const CreateOrder = () => {
                     <Input
                         id="carColorId"
                         type="color"
-                        value={model.carColor}
+                        value={car.carColor}
                         aria-describedby="component-helper-text"
+                        style={{ width: 70 }}
+                        onChange={(e) => setCar({ ...car, carColor: e.target.value })}
                     />
                 </FormControl>
             </div>
 
             <div>
+                <TextField
+                    id="datetime-local"
+                    label="Next appointment"
+                    type="date"
+                    defaultValue={car.dtExpectedReturnDate}
+                    onChange={(e) => setCar({ ...car, dtExpectedReturnDate: e.target.value })}
+                />
+            </div>
+
+            <div>
                 <FormControlLabel
-                    value={model.isInspection}
+                    value={car.isInspection}
                     control={<Checkbox color="primary" />}
                     label="Would you like to have complete inspection?"
                     labelPlacement="end"
                 />
             </div>
+
             <div>
                 <Button
                     variant="contained"

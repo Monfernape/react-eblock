@@ -1,6 +1,6 @@
-import CreateOrderService from '../models/CreateOrderModel';
+import {Car} from '../models/CreateOrderModel';
 
-    export const setOrder = (data: CreateOrderService[]) => {
+    export const setOrder = (data: Car[]) => {
         let getStoredOrders = {};
         let activeUser = 'usman';
         console.log("data: ", data);
