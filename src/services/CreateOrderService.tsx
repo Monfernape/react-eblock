@@ -1,4 +1,4 @@
-import {Car} from '../models/CreateOrderModel';
+import {Car} from '../models/Car';
 
     export const setOrder = (data: Car[]) => {
         let getStoredOrders = {};
