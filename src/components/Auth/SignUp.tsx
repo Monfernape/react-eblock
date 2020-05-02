@@ -36,7 +36,7 @@ const SignUp: React.FC = () => {
         <form onSubmit={checkLogin}>
             <Grid container className={classes.FullHeight}>
                 <Grid item sm={6} xs={12}></Grid>
-                <Grid item sm={6} xs={12} direction={"column"} justify={"center"} alignItems={"center"} className={classes.Flex}>
+                <Grid item container sm={6} xs={12} direction={"column"} justify={"center"} alignItems={"center"} className={classes.Flex}>
                     <TextField
                         value={user.Name}
                         label="Name"
