@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import { TextField, Button, Grid } from "@material-ui/core";
 import { AuthStyles } from "../../styles/Login"
-import { User } from "../../models/User"
+import { User } from "../../Models/User";
 
 const SignUp: React.FC = () => {
     const [user, setUser] = useState<User>(new User());

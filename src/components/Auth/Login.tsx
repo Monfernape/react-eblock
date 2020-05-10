@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { TextField, Button, Grid } from "@material-ui/core";
 import { Intro } from "../../shared/components/Intro"
 import { AuthStyles } from "../../styles/Login"
-import { UserLogin } from "../../models/User"
+import { UserLogin } from "../../Models/User"
 
 const Login: React.FC = () => {
     const [user, setUser] = useState<UserLogin>({ Username: "", Password: "" });
@@ -29,28 +29,28 @@ const Login: React.FC = () => {
             <Grid container className={classes.FullHeight}>
                 <Intro />
                 <Grid item container sm={6} xs={12} direction={"column"} justify={"center"} alignItems={"center"} className={classes.Flex}>
-                        <TextField
-                            value={user.Username}
-                            label="Username/Email"
-                            onChange={(e) => setUser({ ...user, Username: e.target.value })}
-                            error={error && user.Username.length < 1}
-                            helperText={
-                                error && user.Username.length < 1 ? "Username is required" : null
-                            }
-                            className={classes.FullWidth}
-                        />
-                        <TextField
-                            value={user.Password}
-                            label="Password"
-                            onChange={(e) => setUser({ ...user, Password: e.target.value })}
-                            error={error && user.Password.length < 1}
-                            helperText={
-                                error && user.Password.length < 1 ? "Password is required" : null
-                            }
-                            className={classes.FullWidth}
-                        />
-                        <Button type="submit" variant="contained" className={classes.FullWidth}>
-                            Log In
+                    <TextField
+                        value={user.Username}
+                        label="Username/Email"
+                        onChange={(e) => setUser({ ...user, Username: e.target.value })}
+                        error={error && user.Username.length < 1}
+                        helperText={
+                            error && user.Username.length < 1 ? "Username is required" : null
+                        }
+                        className={classes.FullWidth}
+                    />
+                    <TextField
+                        value={user.Password}
+                        label="Password"
+                        onChange={(e) => setUser({ ...user, Password: e.target.value })}
+                        error={error && user.Password.length < 1}
+                        helperText={
+                            error && user.Password.length < 1 ? "Password is required" : null
+                        }
+                        className={classes.FullWidth}
+                    />
+                    <Button type="submit" variant="contained" className={classes.FullWidth}>
+                        Log In
                     </Button>
                 </Grid>
             </Grid>

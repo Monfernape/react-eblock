@@ -14,9 +14,6 @@ export class Car {
   UserId: string = "Usman";
   Name: string = "";
   Model: string = "";
-  Inspection: boolean = false;
   MaintenanceType: string = "1"; 
-  ExpectedReturnDate = "2017-05-24";
-  Color: string = "#ffffff";
 }
 

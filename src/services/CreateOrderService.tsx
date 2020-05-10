@@ -1,10 +1,8 @@
-import {Car} from '../models/Car';
+import {Car} from '../Models/Car';
 
-    export const setOrder = (data: Car[]) => {
-        let getStoredOrders = {};
+    export const setOrder = (data: Car) => {
         let activeUser = 'usman';
-        console.log("data: ", data);
-        getStoredOrders = (localStorage.getItem(`order${activeUser}`) || {});
-        let addedNewData = getStoredOrders ? {...getStoredOrders}: [data];
-        localStorage.setItem('activeUser', JSON.stringify(addedNewData));
+        let getStoredData = localStorage.getItem("orderusman");
+        let rowsData = getStoredData && getStoredData.length > 0 ? [...JSON.parse(getStoredData), data]: [data];
+        localStorage.setItem(`order${activeUser}`, JSON.stringify(rowsData));
     }

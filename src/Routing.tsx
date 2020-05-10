@@ -1,8 +1,9 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import Login from './components/Auth/Login';
-import CreateOrder from './components/CreateOrder/CreateOrder';
-import SignUp from './components/Auth/SignUp'
+import SignUp from './components/Auth/SignUp';
+import CreateOrder from './components/Orders/CreateOrder/CreateOrder';
+import OrderList from './components/Orders/OrderList/OrderList';
 
 //TODO: IMPLEMENTING AUTH
 const Routing: React.FC = () => {
@@ -14,9 +15,7 @@ const Routing: React.FC = () => {
                 />
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/sign-up" component={SignUp} />
-                <Route exact path="/create-order"
-                    component={CreateOrder}
-                />
+                <Route exact path="/order-list" component={OrderList}></Route>
                 <Route exact path="/two"
                     component={() =>
                         <div>Component TWO</div>
