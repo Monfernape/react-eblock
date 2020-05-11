@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 import { TextField, Button, Grid } from "@material-ui/core";
+import { Intro } from "../../shared/components/Intro"
 import { AuthStyles } from "../../styles/Login"
 import { User } from "../../models/User"
 
@@ -35,7 +36,7 @@ const SignUp: React.FC = () => {
     return (
         <form onSubmit={checkLogin}>
             <Grid container className={classes.FullHeight}>
-                <Grid item sm={6} xs={12}></Grid>
+                <Intro />
                 <Grid item container sm={6} xs={12} direction={"column"} justify={"center"} alignItems={"center"} className={classes.Flex}>
                     <TextField
                         value={user.Name}

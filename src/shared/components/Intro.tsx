@@ -4,7 +4,7 @@ import SettingsIcon from '@material-ui/icons/Settings';
 
 export const Intro = () => {
     return (
-        <Grid item sm={6} xs={12} style={{ backgroundColor: "#e3a624" }}>
+        <Grid item sm={6} xs={12} style={{ display: "flex", justifyContent: "center", alignItems: "center",backgroundColor: "#e3a624" }}>
             <Grid style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
                 <Grid style={{display: "flex", alignItems: "center"}}>
                     <Typography style={{ fontSize: "60px", fontFamily: "fantasy", color: "white" }}>E-BLOCK</Typography>
