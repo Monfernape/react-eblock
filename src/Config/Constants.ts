@@ -1,4 +1,4 @@
-import {MaintenanceType} from "../Models/Car"
+import {MaintenanceType} from "../models/Car"
 
 export const MaintenanceTypes : MaintenanceType[] = [
     { id: "1", option: "Tuning" },

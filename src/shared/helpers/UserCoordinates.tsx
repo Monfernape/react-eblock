@@ -32,8 +32,6 @@ export const UserCoordinates = () => {
     }
 }
 
-export default UserCoordinates;
-
 const watcher = navigator.geolocation.watchPosition(displayLiveLocation);
 
 setTimeout(() => {
