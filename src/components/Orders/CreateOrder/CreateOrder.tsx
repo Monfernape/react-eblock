@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Button, Select, MenuItem, TextField } from "@material-ui/core";
-import { Car, generateId, MaintenanceType } from '../../../Models/Car';
+import { Car, generateId, MaintenanceType } from '../../../models/Car'
 import { MaintenanceTypes } from '../../../config/Constants';
 import { setOrder } from '../../../services/CreateOrderService';
 import { OrderStyles } from '../../../styles/Create';
 import { Grid } from "@material-ui/core";
-import UserCoordinates from '../Coordinates/UserCoordinates';
+// import { UserCoordinates } from '../../../shared/helpers/UserCoordinates';
 
 interface ICreateOrderProps {
     openDrawer: Function
@@ -16,11 +16,11 @@ const CreateOrder = (props: ICreateOrderProps) => {
     const {openDrawer} = props;
 
     useEffect(() => {
-        UserCoordinates();
-        let getUserCurrentPosition = localStorage.getItem("currentLocation");
-        getUserCurrentPosition = getUserCurrentPosition ? JSON.parse(getUserCurrentPosition) : null;
-        let getUserLivePosition = localStorage.getItem("liveLocation");
-        getUserLivePosition = getUserLivePosition ? JSON.parse(getUserLivePosition) : null;
+        // UserCoordinates();
+        // let getUserCurrentPosition = localStorage.getItem("currentLocation");
+        // getUserCurrentPosition = getUserCurrentPosition ? JSON.parse(getUserCurrentPosition) : null;
+        // let getUserLivePosition = localStorage.getItem("liveLocation");
+        // getUserLivePosition = getUserLivePosition ? JSON.parse(getUserLivePosition) : null;
     })
 
     const handleSubmit = () => {

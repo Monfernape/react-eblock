@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { TextField, Button, Grid } from "@material-ui/core";
 import { Intro } from "../../shared/components/Intro"
 import { AuthStyles } from "../../styles/Login"
-import { UserLogin } from "../../Models/User"
+import { UserLogin } from "../../models/User"
 
 const Login: React.FC = () => {
     const [user, setUser] = useState<UserLogin>({ Username: "", Password: "" });

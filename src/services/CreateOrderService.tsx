@@ -1,4 +1,4 @@
-import {Car} from '../Models/Car';
+import {Car} from '../models/Car';
 
     export const setOrder = (data: Car) => {
         let activeUser = 'usman';
