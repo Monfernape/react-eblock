@@ -1,8 +1,15 @@
-import {Car} from '../models/Car';
+import { Car } from '../models/Car';
+import { Fix } from '../models/Fixation';
 
-    export const setOrder = (data: Car) => {
-        let activeUser = 'usman';
-        let getStoredData = localStorage.getItem("orderusman");
-        let rowsData = getStoredData && getStoredData.length > 0 ? [...JSON.parse(getStoredData), data]: [data];
-        localStorage.setItem(`order${activeUser}`, JSON.stringify(rowsData));
-    }
+let activeUser = 'usman';
+export const maintenanceOrder = (data: Car) => {
+    let getStoredData = JSON.parse(localStorage.getItem(`order${activeUser}`) || "");
+    let rowsData = getStoredData && getStoredData.length > 0 ? [...getStoredData, data] : [data];
+    localStorage.setItem(`order${activeUser}`, JSON.stringify(rowsData));
+}
+
+export const fixationOrder = (data: Fix) => {
+    let getStoredData = JSON.parse(localStorage.getItem(`fixationOrder${activeUser}`) || "");
+    let rowsData = getStoredData && getStoredData.length > 0 ? [...getStoredData, data] : [data];
+    localStorage.setItem(`order${activeUser}`, JSON.stringify(rowsData));
+}

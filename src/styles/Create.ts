@@ -8,7 +8,7 @@ export const OrderStyles = makeStyles((theme: Theme) =>
         },
         FullWidth: {
             width: "calc(50% - 20px)",
-            margin: "10px 10px"
+            margin: "10px"
         }
     })
 );
