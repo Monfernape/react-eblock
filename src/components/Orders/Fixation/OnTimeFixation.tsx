@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { Grid, Button, TextField, TextareaAutosize } from "@material-ui/core";
+import { MapComponent } from "../../../shared/components/MapComponent"
 import { OrderStyles } from '../../../styles/Create';
 import { Fix } from '../../../models/Fixation';
 import { fixationOrder } from '../../../services/CreateOrderService';
 
 export const OnTimeFixation = () => {
     const [fixation, setFixation] = useState<Fix>(new Fix());
-
     const classes = OrderStyles();
 
     const handleSubmit = () => {
@@ -21,9 +21,9 @@ export const OnTimeFixation = () => {
         }
     });
 
-    const displayLiveLocation = (position: any) => {
-        const { longitude, latitude } = position.coords;
-        setFixation({ ...fixation, liveLocation: [{ latitude: latitude, longitude: longitude }] })
+    const displayLiveLocation = (position: Position) => {
+        const { latitude, longitude } = position.coords;
+        setFixation({ ...fixation, position: { lat: latitude, lng: longitude } })
     }
 
     const handleCancel = () => {
@@ -74,6 +74,7 @@ export const OnTimeFixation = () => {
                         </Button>
                 </Grid>
             </Grid>
+            <MapComponent position={fixation.position} zoom={13} />
         </form>
     )
 }
