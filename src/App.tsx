@@ -6,11 +6,13 @@ import Routing from './Routing';
 
 const App: React.FC = () => {
   return (
-    <Provider store={store}>
-      <Logger>
-        <Routing />
-      </Logger>
-    </Provider>
+    <div>
+      <Provider store={store}>
+        <Logger>
+          <Routing />
+        </Logger>
+      </Provider>
+    </div>
   );
 }
 
