@@ -5,7 +5,6 @@ import { MaintenanceTypes } from '../../../config/Constants';
 import { maintenanceOrder } from '../../../services/CreateOrderService';
 import { OrderStyles } from '../../../styles/Create';
 import { Grid } from "@material-ui/core";
-import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 
 interface ICreateOrderProps {
     openDrawer: Function
@@ -44,34 +43,35 @@ const CreateOrder = (props: ICreateOrderProps) => {
         <form>
             <Grid container direction={"column"} className={classes.Flex}>
                 <Grid item xs={6} sm={12} >
+
                     <TextField
                         id="carNameId"
-                        value={car.Name}
+                        value={car.name}
                         label="Car Name"
-                        onChange={(e) => setCar({ ...car, Name: e.target.value })}
+                        onChange={(e) => setCar({ ...car, name: e.target.value })}
                         className={classes.FullWidth}
                     />
 
                     <TextField
                         id="carModelId"
-                        value={car.Model}
+                        value={car.model}
                         label="Car Model"
-                        onChange={(e) => setCar({ ...car, Model: e.target.value })}
+                        onChange={(e) => setCar({ ...car, model: e.target.value })}
                         className={classes.FullWidth}
                     />
 
                     <TextField
                         label="Car Color"
                         type="color"
-                        value={car.Color}
+                        value={car.color}
                         className={classes.FullWidth}
-                        onChange={(e) => setCar({ ...car, Color: e.target.value })}
+                        onChange={(e) => setCar({ ...car, color: e.target.value })}
                     />
 
                     <Select
-                        value={car.MaintenanceType}
+                        value={car.maintenanceType}
                         label="Maintenance Type"
-                        onChange={e => setCar({ ...car, MaintenanceType: e.target.value as string })}
+                        onChange={e => setCar({ ...car, maintenanceType: e.target.value as string })}
                         className={classes.FullWidth}
                         style={{ marginTop: 26 }}
                     >
@@ -81,15 +81,17 @@ const CreateOrder = (props: ICreateOrderProps) => {
                     </Select>
 
                     <FormControlLabel
-                        value={car.Inspection}
-                        control={<Checkbox color="primary" onChange={(e) => setCar({ ...car, Inspection: e.target.checked })} />}
+                        value={car.inspection}
+                        control={<Checkbox color="primary" onChange={(e) => setCar({ ...car, inspection: e.target.checked })} />}
                         label="Would you like to have complete inspection?"
                         className={classes.FullWidth}
                         labelPlacement="end"
                     />
 
-                    <TextareaAutosize
+                    <TextField
                         rowsMax={2}
+                        type="text"
+                        multiline={true}
                         aria-label="maximum height"
                         placeholder="Enter your address here"
                         value={car.address}
@@ -98,8 +100,10 @@ const CreateOrder = (props: ICreateOrderProps) => {
                         style={{ marginTop: 10, marginRight: 0 }}
                     />
 
-                    <TextareaAutosize
-                        rowsMax={4}
+                    <TextField
+                        rowsMax={2}
+                        type="text"
+                        multiline={true}
                         aria-label="maximum height"
                         placeholder="Side Notes"
                         value={car.sideNote}
@@ -113,13 +117,15 @@ const CreateOrder = (props: ICreateOrderProps) => {
                         onClick={handleCancel}
                         style={{ textAlign: "center" }}>
                         Cancel
-                        </Button>
+                    </Button>
+
                     <Button
                         variant="contained"
                         onClick={handleSubmit}
                         style={{ textAlign: "right" }}>
                         Submit
-                        </Button>
+                    </Button>
+
                 </Grid>
             </Grid>
         </form>
