@@ -5,6 +5,7 @@ import SignUp from './components/Auth/SignUp';
 import CreateOrder from './components/Orders/CreateOrder/CreateOrder';
 import OnTimeFixation from './components/Orders/Fixation/OnTimeFixation';
 import OrderList from './components/Orders/OrderList/OrderList';
+import HomeComponent from './components/Home/Home';
 
 //TODO: IMPLEMENTING AUTH
 const Routing: React.FC = () => {
@@ -19,6 +20,7 @@ const Routing: React.FC = () => {
                 <Route exact path="/order-list" component={OrderList}></Route>
                 <Route exact path="/create-order" component={CreateOrder}></Route>
                 <Route exact path="/fixation" component={OnTimeFixation}></Route>
+                <Route exact path="/home" component={HomeComponent}></Route>
                 <Route exact path="/two"
                     component={() =>
                         <div>Component TWO</div>
