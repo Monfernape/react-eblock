@@ -2,16 +2,17 @@ import React, { useState, useEffect } from 'react'
 import { Grid, Button, TextField, TextareaAutosize } from "@material-ui/core";
 import { MapComponent } from "../../../shared/components/MapComponent"
 import { OrderStyles } from '../../../styles/Create';
-import { Car } from '../../../models/Car';
+import { Fix } from '../../../models/Fixation';
 import { fixationOrder } from '../../../services/CreateOrderService';
 
 export const OnTimeFixation = () => {
-    const [fixation, setFixation] = useState<Car>(new Car());
+    const [fixation, setFixation] = useState<Fix>(new Fix());
     const classes = OrderStyles();
 
     const handleSubmit = () => {
         fixationOrder(fixation);
-        setFixation(new Car());
+        console.log("fixation:", fixation);
+        setFixation(new Fix());
     }
 
     useEffect(() => {
@@ -33,7 +34,6 @@ export const OnTimeFixation = () => {
         <form>
             <Grid container direction={"column"} className={classes.Flex}>
                 <Grid item xs={6} sm={12} >
-
                     <TextField
                         id="carNameId"
                         value={fixation.number}
@@ -50,16 +50,13 @@ export const OnTimeFixation = () => {
                         onChange={(e) => setFixation({ ...fixation, color: e.target.value })}
                     />
 
-                    <TextField
-                        rowsMax={2}
-                        type="text"
-                        multiline={true}
-                        value={fixation.problemDetail}
+                    <TextareaAutosize
+                        rowsMax={4}
                         aria-label="maximum height"
                         placeholder="Problem Detail"
-                        onChange={(e) => setFixation({ ...fixation, problemDetail: e.target.value })}
                         className={classes.FullWidth}
                         style={{ marginTop: 10, marginRight: 0 }}
+                        defaultValue=""
                     />
 
                     <Button
@@ -67,15 +64,14 @@ export const OnTimeFixation = () => {
                         onClick={handleCancel}
                         style={{ textAlign: "center" }}>
                         Cancel
-                    </Button>
+                        </Button>
 
                     <Button
                         variant="contained"
                         onClick={handleSubmit}
                         style={{ textAlign: "right" }}>
                         Submit
-                    </Button>
-
+                        </Button>
                 </Grid>
             </Grid>
             <MapComponent position={fixation.position} zoom={13} />
