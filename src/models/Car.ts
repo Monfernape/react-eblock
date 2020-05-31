@@ -1,5 +1,3 @@
-const uuid = require('react-uuid');
-
 export interface MaintenanceType {
   id: string;
   option: string;
@@ -8,22 +6,18 @@ export interface MaintenanceType {
 export interface ILocation {
   latitude: number,
   longitude: number
-} 
-
-export const generateId = () => {
-  return uuid();
 }
 
 export class Car {
-  Id: string = generateId();
-  UserId: string = "userId";
-  Name: string = "";
-  Model: string = "";
-  Inspection: boolean = false;
-  MaintenanceType: string = "1"; 
+  id: string = "";
+  userId: string = "userId";
+  name: string = "";
+  model: string = "";
+  inspection: boolean = false;
+  maintenanceType: string = "1"; 
   address: string = "";
   sideNote: string = '';
-  Color: string = "#ffffff";
+  color: string = "#ffffff";
   liveLocation: ILocation[] = [];
 }
 
