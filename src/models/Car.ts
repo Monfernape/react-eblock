@@ -10,17 +10,14 @@ export interface ILocation {
 
 export class Car {
   Id: string = "";
-  userId: string = "userId";
-  name: string = "";
-  model?: string = "";
-  inspection?: boolean = false;
-  maintenanceType?: string = "1";
-  address?: string = "";
-  sideNote?: string = '';
-  color?: string = "#ffffff";
-  liveLocation?: ILocation[] = [];
-  number?: string = "";
-  problemDetail?: string = "";
-  position: { lat: number, lng: number } = { lat: 0, lng: 0 }
+  UserId: string = "userId";
+  Name: string = "";
+  Model: string = "";
+  Inspection: boolean = false;
+  MaintenanceType: string = "1"; 
+  address: string = "";
+  sideNote: string = '';
+  Color: string = "#ffffff";
+  liveLocation: ILocation[] = [];
 }
 
