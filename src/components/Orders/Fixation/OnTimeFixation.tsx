@@ -11,13 +11,12 @@ export const OnTimeFixation = () => {
 
     const handleSubmit = () => {
         fixationOrder(fixation);
-        console.log("fixation:", fixation);
         setFixation(new Fix());
     }
 
     useEffect(() => {
         if (navigator.geolocation) {
-            navigator.geolocation.watchPosition(displayLiveLocation);
+            navigator.geolocation.getCurrentPosition(displayLiveLocation);
         }
     });
 

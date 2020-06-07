@@ -1,28 +1,60 @@
-import React from 'react';
-import { Card, CardMedia, CardContent, Typography, CardHeader } from "@material-ui/core";
-import { CardStyles } from '../../styles/Card';
+import React from "react";
+import {
+  Card,
+  CardMedia,
+  CardContent,
+  Typography,
+  CardHeader,
+} from "@material-ui/core";
+import { CardStyles, tileViewStyles } from "../../styles/Card";
 
 interface ICards {
-    title: string;
-    description: string;
-    image: string;
-    goto: Function
+  title?: string;
+  description: any[];
+  viewType: any;
+  image: any;
+  goto?: Function;
 }
 
 export const CardComponent = (props: ICards) => {
-    const classes = CardStyles();
-    const { title, description, image } = props;
+  const classes = CardStyles();
+  const tileViewClasses = tileViewStyles();
+  const { title, description, viewType, image } = props;
 
-    return (
-        <Card className={classes.root} variant="outlined"
-            onClick={(event: React.MouseEvent<HTMLDivElement, MouseEvent>) => props.goto(title)}>
-            <CardHeader title={title} />
-            <CardMedia className={classes.media} image={image} title={title} />
-            <CardContent>
-                <Typography className={classes.description} variant="h5" component="h2">
-                    {description}
-                </Typography>
-            </CardContent>
-        </Card>
-    );
-}
+  return (
+    <Card
+      className={viewType === "tile" ? tileViewClasses.root : classes.root}
+      variant="outlined"
+      onClick={(event: React.MouseEvent<HTMLDivElement, MouseEvent>) =>
+        props.goto ? props.goto(title) : null
+      }
+    >
+      {title ? <CardHeader title={title} /> : null}
+
+      <CardMedia
+        className={viewType === "tile" ? tileViewClasses.cover : classes.media}
+        image={image}
+      />
+
+      <div className={tileViewClasses.details}>
+        <CardContent
+          className={`${viewType === "tile" ? tileViewClasses.content : ""}`}
+        >
+          {
+          description.map((item, index) => {
+            return (<div key={index}>
+              <Typography
+                className={classes.description}
+                variant="h5"
+                component="h2"
+              >
+                {item}
+              </Typography>
+            </div>)
+          })
+        }
+        </CardContent>
+      </div>
+    </Card>
+  );
+};

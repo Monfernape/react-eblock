@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Button, Select, MenuItem, TextField, Checkbox, FormControlLabel } from "@material-ui/core";
+import ToggleButton from '@material-ui/lab/ToggleButton';
+import CheckIcon from '@material-ui/icons/Check';
 import { Car, MaintenanceType } from '../../../models/Car';
 import { MaintenanceTypes } from '../../../config/Constants';
 import { maintenanceOrder } from '../../../services/CreateOrderService';
@@ -14,23 +16,22 @@ const CreateOrder = (props: ICreateOrderProps) => {
     const [car, setCar] = useState<Car>(new Car());
     const { openDrawer } = props;
 
-    useEffect(() => {
-        if (navigator.geolocation) {
-            navigator.geolocation.watchPosition(displayLiveLocation);
-        }
-    })
-
     const displayLiveLocation = (position: any) => {
         const { longitude, latitude } = position.coords;
         setCar({ ...car, liveLocation: [{ latitude: latitude, longitude: longitude }] })
     }
 
     const handleSubmit = () => {
-        console.log("car:", car);
         maintenanceOrder(car)
         // openDrawer(false);
         setCar(new Car());
     }
+
+    useEffect(() => {
+        if (navigator.geolocation && car.enableLocation === true) {
+            navigator.geolocation.getCurrentPosition(displayLiveLocation);
+        }
+    }, [car.enableLocation])
 
     const handleCancel = () => {
         // openDrawer(false);
@@ -99,6 +100,16 @@ const CreateOrder = (props: ICreateOrderProps) => {
                         className={classes.FullWidth}
                         style={{ marginTop: 10, marginRight: 0 }}
                     />
+
+                    <div className={classes.FullWidth}>
+                        <ToggleButton
+                            value="check"
+                            selected={car.enableLocation}
+                            onChange={() => setCar({ ...car, enableLocation: car.enableLocation ? false : true })}
+                        >
+                            <CheckIcon />
+                        </ToggleButton>Enable your current location
+                    </div>
 
                     <TextField
                         rowsMax={2}
