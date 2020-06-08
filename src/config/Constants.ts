@@ -3,7 +3,7 @@ import {MaintenanceType} from "../models/Car";
 export interface ICardsData {
     description: string[];
     viewType: string;
-    image: string;
+    image?: string;
   }
 
 export const MaintenanceTypes : MaintenanceType[] = [
@@ -16,12 +16,10 @@ export const MaintenanceTypes : MaintenanceType[] = [
 export const cardsData: ICardsData[] = [
     {
       description: ["Name: Mazda LaPuta", "Number: 3228 MNY", "Order Type: Maintenance"],
-      viewType: "tile",
-      image: require("../assets/images/cards/car_image.svg"),
+      viewType: "tile"
     },
     {
       description: ["NAME: Ford Pinto", "Number: 4488", "Order Type: Break Service"],
-      viewType: "tile",
-      image: require("../assets/images/cards/car_image.svg"),
+      viewType: "tile"
     },
   ];

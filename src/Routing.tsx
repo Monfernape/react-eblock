@@ -20,7 +20,7 @@ const Routing: React.FC = () => {
                 <Route exact path="/sign-up" component={SignUp} />
                 <Route exact path="/order-list" component={OrderList}></Route>
                 <Route exact path="/create-order" component={CreateOrder}></Route>
-                <Route exact path="/orders" component={Orders}></Route>
+                <Route exact path="/user-orders" component={Orders}></Route>
                 <Route exact path="/fixation" component={OnTimeFixation}></Route>
                 <Route exact path="/home" component={HomeComponent}></Route>
                 <Route exact path="/two"
