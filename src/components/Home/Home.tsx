@@ -7,13 +7,13 @@ import './index.css';
 const HomeComponent = (props: any) => {
     const onTimeFix = {
         title: 'On Time Fixation',
-        description: 'Let us know if your car ran into problem',
+        description: ['Let us know if your car ran into problem'],
         image: 'assets/images/onTimeFixation.png'
     };
 
     const serviceLater = {
         title: 'Pick Car for Service',
-        description: 'Let us know if you want service of your beloved car',
+        description: ['Let us know if you want service of your beloved car'],
         image: 'assets/images/carService.png'       
     };
 
@@ -30,12 +30,14 @@ const HomeComponent = (props: any) => {
             <CardComponent
                 title={onTimeFix.title}
                 description={onTimeFix.description}
+                viewType="grid"
                 image={onTimeFix.image}
                 goto={navigateTo}
             />
             <CardComponent
                 title={serviceLater.title}
                 description={serviceLater.description}
+                viewType="grid"
                 image={serviceLater.image}
                 goto={navigateTo}
             />
