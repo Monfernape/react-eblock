@@ -7,12 +7,13 @@ import {
   CardHeader,
 } from "@material-ui/core";
 import { CardStyles, tileViewStyles } from "../../styles/Card";
+import DirectionsCarIcon from '@material-ui/icons/DirectionsCar';
 
 interface ICards {
   title?: string;
   description: any[];
   viewType: any;
-  image: any;
+  image?: any;
   goto?: Function;
 }
 
@@ -31,11 +32,14 @@ export const CardComponent = (props: ICards) => {
     >
       {title ? <CardHeader title={title} /> : null}
 
+      {image? 
       <CardMedia
-        className={viewType === "tile" ? tileViewClasses.cover : classes.media}
-        image={image}
-      />
+      className={viewType === "tile" ? tileViewClasses.cover : classes.media}
+      image={image}
+    />: <DirectionsCarIcon className={tileViewClasses.DirectionsCarIcon}/>
 
+    }
+      
       <div className={tileViewClasses.details}>
         <CardContent
           className={`${viewType === "tile" ? tileViewClasses.content : ""}`}

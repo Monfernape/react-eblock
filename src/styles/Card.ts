@@ -13,7 +13,12 @@ export const tileViewStyles = makeStyles((theme: Theme) =>
       flex: '1 0 auto',
     },
     cover: {
-      width: 251
+      width: 151
+    },
+    DirectionsCarIcon: {
+      width: 60, 
+      height: 60,
+      
     },
     controls: {
       display: 'flex',
