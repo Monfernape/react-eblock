@@ -12,16 +12,16 @@ const SignUp: React.FC = () => {
 
     const checkLogin = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        const { Username, Password } = user;
+        const { username, password } = user;
         if (validateForm()) {
             setError(true);
             return;
         } else {
-            const users: User[] = JSON.parse(localStorage.getItem("users") || "");
-            const user = users.find(
-                (x: User) => x.Username === Username && x.Password === Password
-            );
-            if (user) localStorage.setItem("current-user", JSON.stringify(user));
+            // const users: User[] = JSON.parse(localStorage.getItem("users") || "");
+            // const user = users.find(
+            //     (x: User) => x.Username === Username && x.Password === Password
+            // );
+            // if (user) localStorage.setItem("current-user", JSON.stringify(user));
         }
     };
 
@@ -39,32 +39,32 @@ const SignUp: React.FC = () => {
                 <Intro />
                 <Grid item container sm={6} xs={12} direction={"column"} justify={"center"} alignItems={"center"} className={classes.Flex}>
                     <TextField
-                        value={user.Name}
+                        value={user.name}
                         label="Name"
-                        onChange={(e) => setUser({ ...user, Name: e.target.value })}
-                        error={error && user.Name.length < 1}
+                        onChange={(e) => setUser({ ...user, name: e.target.value })}
+                        error={error && user.name.length < 1}
                         helperText={
-                            error && user.Name.length < 1 ? "Name is required" : null
+                            error && user.name.length < 1 ? "Name is required" : null
                         }
                         className={classes.FullWidth}
                     />
                     <TextField
-                        value={user.Username}
+                        value={user.username}
                         label="Username/Email"
-                        onChange={(e) => setUser({ ...user, Username: e.target.value })}
-                        error={error && user.Username.length < 1}
+                        onChange={(e) => setUser({ ...user, username: e.target.value })}
+                        error={error && user.username.length < 1}
                         helperText={
-                            error && user.Username.length < 1 ? "Username is required" : null
+                            error && user.username.length < 1 ? "Username is required" : null
                         }
                         className={classes.FullWidth}
                     />
                     <TextField
-                        value={user.Password}
+                        value={user.password}
                         label="Password"
-                        onChange={(e) => setUser({ ...user, Password: e.target.value })}
-                        error={error && user.Password.length < 1}
+                        onChange={(e) => setUser({ ...user, password: e.target.value })}
+                        error={error && user.password.length < 1}
                         helperText={
-                            error && user.Password.length < 1 ? "Password is required" : null
+                            error && user.password.length < 1 ? "Password is required" : null
                         }
                         className={classes.FullWidth}
                     />
@@ -72,31 +72,31 @@ const SignUp: React.FC = () => {
                         value={password}
                         label="Confirm Password"
                         onChange={(e) => setPassword(e.target.value)}
-                        error={error && password !== user.Password}
+                        error={error && password !== user.password}
                         helperText={
-                            error && error && password !== user.Password ? "Passwords do not match" : null
+                            error && error && password !== user.password ? "Passwords do not match" : null
                         }
                         className={classes.FullWidth}
                     />
                     <TextField
-                        value={user.PhoneNumber}
+                        value={user.phoneNumber}
                         label="Phone Number"
-                        onChange={(e) => setUser({ ...user, PhoneNumber: e.target.value })}
-                        error={error && user.PhoneNumber.length < 1}
+                        onChange={(e) => setUser({ ...user, phoneNumber: e.target.value })}
+                        error={error && user.phoneNumber.length < 1}
                         helperText={
-                            error && user.PhoneNumber.length < 1 ? "Phone Number is required" : null
+                            error && user.phoneNumber.length < 1 ? "Phone Number is required" : null
                         }
                         className={classes.FullWidth}
                     />
                     <TextField
-                        value={user.Address}
+                        value={user.address}
                         label="Address"
                         multiline
                         rows={4}
-                        onChange={(e) => setUser({ ...user, Address: e.target.value })}
-                        error={error && user.Address.length < 1}
+                        onChange={(e) => setUser({ ...user, address: e.target.value })}
+                        error={error && user.address.length < 1}
                         helperText={
-                            error && user.Address.length < 1 ? "Address is required" : null
+                            error && user.address.length < 1 ? "Address is required" : null
                         }
                         className={classes.FullWidth}
                     />

@@ -1,21 +1,17 @@
-export interface UserLogin {
-    Username: string;
-    Password: string;
-}
-
 export interface IUser {
-    Id?: string;
-    Name: string;
-    Username: string;
-    Password: string;
-    PhoneNumber: string;
-    Address: string;
+    _id: string;
+    name: string;
+    username: string;
+    password: string;
+    phoneNumber: string;
+    address: string
 }
 
 export class User implements IUser {
-    Name = ""
-    Username = ""
-    Password = ""
-    PhoneNumber = ""
-    Address = ""
+    _id = "";
+    name = "";
+    username = "";
+    password = "";
+    phoneNumber = "";
+    address = ""
 }
