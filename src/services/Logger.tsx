@@ -1,22 +1,21 @@
 import React, { Component } from 'react'
 
-interface LoggerState {
+interface IState {
     hasError: boolean 
     info: string
 }
 
-interface LoggerProps {
-
+interface IProps {
+    children: React.ReactNode
 }
 
-class Logger extends Component<LoggerProps, LoggerState> {
-    constructor(props: any){
+class Logger extends Component<IProps, IState> {
+    constructor(props: IProps){
         super(props);
         this.state = { hasError: false, info: ""}
     }
 
     static getDerivedStateFromError(error: Error) {
-        console.log("DETECTING")
         return { hasError: true };
     }
 
