@@ -3,20 +3,21 @@ import { TextField, Button, Grid } from "@material-ui/core";
 import { Intro } from "../../shared/components/Intro"
 import { AuthStyles } from "../../styles/Login"
 import { User } from "../../models/User"
+import { DataService } from "../../services/DataService/DataService"
 
 const SignUp: React.FC = () => {
     const [user, setUser] = useState<User>(new User());
     const [password, setPassword] = useState<string>("")
     const [error, setError] = useState<boolean>(false);
     const classes = AuthStyles()
+    const dataService = new DataService()
 
-    const checkLogin = (event: React.FormEvent<HTMLFormElement>) => {
+    const checkLogin = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        const { username, password } = user;
-        if (validateForm()) {
+        if (!validateForm()) {
             setError(true);
-            return;
         } else {
+            await dataService.signup(user)
             // const users: User[] = JSON.parse(localStorage.getItem("users") || "");
             // const user = users.find(
             //     (x: User) => x.Username === Username && x.Password === Password

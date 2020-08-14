@@ -1,1 +1,1 @@
-export * from "./LocalDataService"
+export * from "./DataService"
