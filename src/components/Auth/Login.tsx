@@ -16,9 +16,12 @@ const Login: React.FC = () => {
         const { username, password } = user;
         if (username?.length === 0 || password?.length === 0) {
             setError(true);
-            return;
         } else {
-            await dataService.login(username, password)
+            try {
+                await dataService.login(username, password)
+            } catch(error) {
+                console.log("Error", error)
+            }
         }
     };
 
@@ -40,6 +43,7 @@ const Login: React.FC = () => {
                     <TextField
                         value={user.password}
                         label="Password"
+                        type="password"
                         onChange={(e) => setUser({ ...user, password: e.target.value })}
                         error={error && user.password.length < 1}
                         helperText={
