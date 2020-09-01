@@ -1,21 +1,19 @@
-import React, { useState } from "react";
-import { CardComponent } from "../../shared/components/Card";
-import { cardsData, ICardsData } from "../../config/Constants";
+import React from "react";
+import { Grid } from "@material-ui/core";
+import { UserOrder } from "./UserOrder";
 
-export const Orders = () => {
-  const [cards] = useState(cardsData);
-
+export const Orders: React.FC = () => {
   return (
-    <div>
-      {cards.map((card: ICardsData, index) => (
-        <CardComponent
-          key={index}
-          description={card.description}
-          viewType={card.viewType}
-          image={card.image}
-        />
-      ))}
-    </div>
+    <Grid container style={{ display: "flex" }}>
+      <Grid item sm={4}></Grid>
+      <Grid item xs={12} sm={8}>
+        {[0, 1, 2, 3, 4, 5].map((order, key) => (
+          <React.Fragment key={key}>
+            <UserOrder />
+          </React.Fragment>
+        ))}
+      </Grid>
+    </Grid>
   );
 };
 
